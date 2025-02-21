@@ -1,0 +1,7 @@
+{
+  "cv": "<h2>Curriculum Vitae</h2><p>Prof. John Doe is an expert in Theoretical Computer Science and Artificial Intelligence...</p>",
+  "research": "<h2>Research Interests</h2><p>My research focuses on machine learning, algorithm design, and AI ethics...</p>",
+  "publication": "<h2>Publications</h2><ul><li>Publication 1</li><li>Publication 2</li></ul>",
+  "employment": "<h2>Employment</h2><p>I am currently a professor at XYZ University...</p>",
+  "contact": "<h2>Contact</h2><p>You can reach me via <a href='mailto:john.doe@example.com'>email</a> or find my office at Building 5, Room 301.</p>"
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <script>
+        function loadSectionContent(section) {
+    fetch('content.json')
+        .then(response => response.json())
+        .then(data => {
+            const contentDiv = document.querySelector('.content');
+            if (data[section]) {
+                contentDiv.innerHTML = data[section];  // Directly injects HTML
+            } else {
+                contentDiv.innerHTML = "<h2>Section Not Found</h2><p>The section you requested does not exist.</p>";
+            }
+        })
+        .catch(err => console.error('Error loading content:', err));
+}
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            display: flex;
+            height: 100vh;
+            background: url('background.png') no-repeat left center fixed;
+            background-size: contain;
+        }
+        .menu {
+            width: 200px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .menu h1 {
+            font-size: 1.2em;
+        }
+        .menu p {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        .menu nav {
+            margin-top: auto;
+        }
+        .menu nav a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 5px 0;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        .menu nav a:hover {
+            opacity: 1;
+        }
+        .content {
+            flex-grow: 1;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            overflow-y: auto;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div>
+            <h1>JOÃO VITOR SCHMIDT</h1>
+            <p><i>Philosopher, <br>Professor, <br>Researcher.</i></p>
+        </div>
+        <nav>
+            <a href="#cv" data-section="cv">CV</a>
+            <a href="#research" data-section="research">Research</a>
+            <a href="#publication" data-section="publication">Publication</a>
+            <a href="#employment" data-section="employment">Employment</a>
+            <a href="#contact" data-section="contact">Contact</a>
+        </nav>
+    </div>
+    <div class="content">
+        <h2>Welcome</h2>
+        <p>Select a section from the menu.</p>
+    </div>
+    <script>
+        // Function to load content from the JSON file based on section
+        function loadSectionContent(section) {
+            fetch('content.json')
+                .then(response => response.json())
+                .then(data => {
+                    const contentDiv = document.querySelector('.content');
+                    if (data[section]) {
+                        contentDiv.innerHTML = data[section];  // Directly injects HTML from JSON
+                    } else {
+                        contentDiv.innerHTML = "<h2>Section Not Found</h2><p>The section you requested does not exist.</p>";
+                    }
+                })
+                .catch(err => console.error('Error loading content:', err));
+        }
+
+        // Set up event listeners for the navigation menu
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = link.getAttribute('data-section');
+                loadSectionContent(section);
+            });
+        });
+    </script>
+</body>
+</html>
